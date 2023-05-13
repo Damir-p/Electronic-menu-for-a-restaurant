@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Register</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label>Имя:</label>
+            <input type="text" name="name" required>
+        </div>
+        <div>
+            <label>Тел номер:</label>
+            <input type="text" name="number" required>
+        </div>
+        <div>
+            <label>Пароль:</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit">Регистрация</button>
+    </form>
+    <a href="{% url 'login' %}">Логин</a>
+{% endblock %}
