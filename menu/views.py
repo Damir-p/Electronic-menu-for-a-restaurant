@@ -1,35 +1,58 @@
-from django.views import  View
-from django.shortcuts import render , redirect
-from accounts.models import Customer
-from menu.models import Products
-
-class Cart(View):
-    def get(self , request):
-        ids = list(request.session.get('cart').keys())
-        products = Products.get_products_by_id(ids)
-        print(products)
-        return render(request , 'cart.html' , {'products' : products} )
+from django.shortcuts import render , redirect , HttpResponseRedirect
+from menu.models import Products, Category
+from django.views import View
 
 
+class Index(View):
 
-class CheckOut(View):
-    def post(self, request):
-        address = request.POST.get('address')
-        phone = request.POST.get('phone')
-        customer = request.session.get('customer')
+    def post(self , request):
+        product = request.POST.get('product')
+        remove = request.POST.get('remove')
         cart = request.session.get('cart')
-        products = Products.get_products_by_id(list(cart.keys()))
-        print(address, phone, customer, cart, products)
+        if cart:
+            quantity = cart.get(product)
+            if quantity:
+                if remove:
+                    if quantity<=1:
+                        cart.pop(product)
+                    else:
+                        cart[product]  = quantity-1
+                else:
+                    cart[product]  = quantity+1
 
-        for product in products:
-            print(cart.get(str(product.id)))
-            order = Order(customer=Customer(id=customer),
-                          product=product,
-                          price=product.price,
-                          address=address,
-                          phone=phone,
-                          quantity=cart.get(str(product.id)))
-            order.save()
+            else:
+                cart[product] = 1
+        else:
+            cart = {}
+            cart[product] = 1
+
+        request.session['cart'] = cart
+        print('cart' , request.session['cart'])
+        return redirect('homepage')
+
+
+
+    def get(self , request):
+        # print()
+        return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')
+
+def store(request):
+    cart = request.session.get('cart')
+    if not cart:
         request.session['cart'] = {}
+    products = None
+    categories = Category.get_all_categories()
+    categoryID = request.GET.get('category')
+    if categoryID:
+        products = Products.get_all_products_by_categoryid(categoryID)
+    else:
+        products = Products.get_all_products();
 
-        return redirect('cart')
+    data = {}
+    data['products'] = products
+    data['categories'] = categories
+
+    print('you are : ', request.session.get('email'))
+    return render(request, 'index.html', data)
+
+
