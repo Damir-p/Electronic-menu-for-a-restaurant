@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect , HttpResponseRedirect
-from menu.models import Products, Category
+from menu.models import Product, Category
 from django.views import View
 
 
@@ -44,9 +44,9 @@ def store(request):
     categories = Category.get_all_categories()
     categoryID = request.GET.get('category')
     if categoryID:
-        products = Products.get_all_products_by_categoryid(categoryID)
+        products = Product.get_all_products_by_categoryid(categoryID)
     else:
-        products = Products.get_all_products();
+        products = Product.get_all_products();
 
     data = {}
     data['products'] = products

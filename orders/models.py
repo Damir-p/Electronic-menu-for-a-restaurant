@@ -1,11 +1,11 @@
 from django.db import models
-from menu.models import Products
+from menu.models import Product
 from accounts.models import Customer
 import datetime
 
 
 class Order(models.Model):
-    product = models.ForeignKey(Products,
+    product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer,
                                  on_delete=models.CASCADE)
