@@ -1,24 +1,31 @@
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.db import models
 
-def register(request):
-    if request.method == 'POST':
-        # получение данных из POST-запроса
-        name = request.POST['name']
-        number = request.POST['number']
-        password = request.POST['password']
 
-        # создание нового пользователя
-        user = User.objects.create_user(username=name, email=number, password=password)
+class Customer(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField (max_length=50)
+    phone = models.CharField(max_length=10)
+    email=models.EmailField()
+    password = models.CharField(max_length=100)
 
-        # сохранение пользователя в базе данных
-        user.save()
+    #to save the data
+    def register(self):
+        self.save()
 
-        # вывод сообщения об успешной регистрации
-        messages.success(request, 'You have successfully registered!')
 
-        # перенаправление на страницу входа
-        return redirect('login')
+    @staticmethod
+    def get_customer_by_email(email):
+        try:
+            return Customer.objects.get(email= email)
+        except:
+            return False
 
-    return render(request, 'register.html')
+
+    def isExists(self):
+        if Customer.objects.filter(email = self.email):
+            return True
+
+        return False
+
+    def __str__(self):
+        return self.first_name
