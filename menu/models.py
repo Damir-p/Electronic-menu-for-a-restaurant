@@ -2,7 +2,7 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True)
-    slug = models.CharField(max_length=100, db_index=True, unique=True, verbose_name='Ссылка')
+    # slug = models.CharField(max_length=100, db_index=True, unique=True, verbose_name='Ссылка')
 
     @staticmethod
     def get_all_categories():
