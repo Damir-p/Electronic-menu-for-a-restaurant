@@ -3,7 +3,7 @@ from . models import Feature, Testimonial, Newsletter
 from menu.models import Category
 from django.contrib import messages
 from django.core.mail import send_mail
-from irestaurant import settings
+from main import settings
 
 
 # Create your views here.
