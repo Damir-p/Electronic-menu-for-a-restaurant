@@ -17,28 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from menu.views import Index, store
-from accounts.views import Login, Signup, logout
-from orders.views import OrderView
-from cart.middlewares import auth_middleware
-from cart.views import Cart, CheckOut
-from django.conf.urls.static import static
-from . import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Index.as_view(), name='homepage'),
-    path('store', store , name='store'),
+    path('', include('meals.urls')),
+    path('menu/', include('menu.urls')),
 
-    path('signup', Signup.as_view(), name='signup'),
-    path('login', Login.as_view(), name='login'),
-    path('logout', logout , name='logout'),
-    path('cart', auth_middleware(Cart.as_view()) , name='cart'),
-    path('check-out', CheckOut.as_view() , name='checkout'),
-    path('orders', auth_middleware(OrderView.as_view()), name='orders'),
-
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+]
 
 

@@ -1,60 +1,42 @@
 from django.db import models
+from datetime import datetime
+
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
-    # slug = models.CharField(max_length=100, db_index=True, unique=True, verbose_name='Ссылка')
-
-    @staticmethod
-    def get_all_categories():
-        return Category.objects.all()
-
+    name = models.CharField(max_length=50)
+    image = models.ImageField(
+        upload_to='media/categories/%y/%m/%d/', blank=True)
+    description = models.TextField(max_length=500)
 
     class Meta:
-        ordering = ('name',)
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
 
     def __str__(self):
         return self.name
 
 
+class Menu(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    description = models.TextField(1)
+    image = models.ImageField(upload_to='media/meals/%y/%m/%d/', blank=True)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    preparation_time = models.CharField(max_length=10)
+    slug = models.SlugField(max_length=100, unique=True)
+    upload_time = models.DateTimeField(blank=True, default=datetime.now)
 
-class Product(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Наименование')
-    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Цена')
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
-    description = models.TextField(blank=True, verbose_name='Описание')
-    # slug = models.CharField(max_length=100, db_index=True, unique=True, verbose_name='Ссылка')
-    image = models.ImageField(upload_to='uploads/products/')
+    def __str__(self):
+        return self.name
+
+
+class Booking(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    mobile = models.CharField(max_length=14)
+    date = models.DateField()
+    time = models.TimeField()
+    no_of_persons = models.IntegerField()
     
-
-    class Meta:
-        ordering = ('name',)
-        verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
-        # index_together = (('id', 'slug'), )
-
     def __str__(self):
         return self.name
-
-    @staticmethod
-    def get_products_by_id(ids):
-        return Product.objects.filter (id__in=ids)
-
-    @staticmethod
-    def get_all_products():
-        return Product.objects.all()
-
-
-    @staticmethod
-    def get_all_products_by_categoryid(category_id):
-        if category_id:
-            return Product.objects.filter (category=category_id)
-        else:
-            return Product.get_all_products();
-
-    def __str__(self):
-        return self.name
-
- 
-
