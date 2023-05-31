@@ -29,8 +29,8 @@ def newsletter(request):
         newsletter = Newsletter(email=email)
 
         #  Email
-        subject = 'Newsletter Subscription'
-        message = 'Hi reader! Thank you for subscribing to SnackyCafe\'s weekly newsletter collection'
+        subject = 'Подписка на новости'
+        message = 'Привет читатель! Благодарим вас за подписку на еженедельную рассылку новостей Наш Ресторан.'
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [email]
         send_mail(subject, message, from_email,
@@ -38,7 +38,7 @@ def newsletter(request):
 
         newsletter.save()
         messages.success(
-            request, 'Thank you for subscribing for \SnackyCafe\'s weekly newsletter collection. Check your email inbox for more info')
+            request, 'Благодарим вас за подписку на еженедельный информационный бюллетень \Наш Ресторан\. Проверьте свой почтовый ящик для получения дополнительной информации')
         redirect('home')
 
     return render(request, 'pages/home.html')

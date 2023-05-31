@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'ckeditor',
 
-    # 'accounts',
     'menu',
     # 'cart',
     # 'orders',

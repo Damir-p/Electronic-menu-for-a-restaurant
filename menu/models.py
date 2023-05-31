@@ -26,7 +26,7 @@ class Menu(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     preparation_time = models.CharField(max_length=10)
     slug = models.SlugField(max_length=100, unique=True)
-    upload_time = models.DateTimeField(blank=True, default=datetime.now)
+    # upload_time = models.DateTimeField(blank=True, default=datetime.now)
 
     def __str__(self):
         return self.name

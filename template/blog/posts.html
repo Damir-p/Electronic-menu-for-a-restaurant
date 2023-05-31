@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block title %}Home{% endblock title %}
+{% extends 'base.html' %} {% block title %}О нас{% endblock title %}
 <p></p>
 {% block content %} {% load humanize %} {% load static %}
 <!-- Page Header Start -->
@@ -6,7 +6,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2>Food Blog</h2>
+        <h2>Блог о еде</h2>
       </div>
       <div class="col-12">
         <a href="{% url 'home' %}">Домой</a>
@@ -43,7 +43,7 @@
             <div class="blog-text">
               <p>{{post.body | safe | truncatewords:20}}</p>
               <a class="btn custom-btn" href="{% url 'post_detail' post.id %}"
-                >Read More</a
+                >Читать далее</a
               >
             </div>
           </div>
@@ -58,7 +58,7 @@
           {% if posts.has_previous %}
           <li class="page-item">
             <a class="page-link" href="?page={{posts.previous_page_number}}"
-              >Previous</a
+              >Предыдущий</a
             >
           </li>
           {% else %}
@@ -78,7 +78,7 @@
           {% endif %} {% endfor %} {% if posts.has_next %}
           <li class="page-item">
             <a class="page-link" href="?page={{posts.next_page_number}}"
-              >Next</a
+              >Следующий</a
             >
           </li>
           {% else %}

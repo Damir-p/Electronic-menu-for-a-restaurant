@@ -23,13 +23,13 @@
     <div class="row align-items-center">
       <div class="col-lg-6">
         <div class="about-img">
-          <img src="{% static 'img/about.jpg' %}" alt="Image" />
+          <img src="{% static 'img/about.jpg' %}" alt="Image" width="400: height=400"/>
           <button
             type="button"
             class="btn-play"
             data-toggle="modal"
-            data-src="{% static 'https://www.youtube.com/embed/DWRcNpR6Kdc' %}"
-            data-target="#videoModal"
+            data-src="{% static 'https://www.youtube.com' %}"
+            data-target="#"
           >
             <span></span>
           </button>
@@ -96,8 +96,8 @@
 <div class="team">
   <div class="container">
     <div class="section-header text-center">
-      <p>Our Team</p>
-      <h2>Our Master Chefs</h2>
+      <p>Наша команда</p>
+      <h2>Наши шеф-повара</h2>
     </div>
     <div class="row">
       {% for chef in chefs %}

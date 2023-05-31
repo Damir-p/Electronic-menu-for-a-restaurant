@@ -36,7 +36,7 @@
           <p>{{post.body | safe}}</p>
         </div>
         <div class="single-comment">
-          <h2>Comments({{count}})</h2>
+          <h2>Комментарий({{count}})</h2>
           <ul class="comment-list">
             {% for comment in comments %}
             <li class="comment-item">
@@ -50,7 +50,7 @@
                   <p>
                     {{comment.content}}
                   </p>
-                  <a class="btn" href="">Reply</a>
+                  <a class="btn" href="">Ответить</a>
                 </div>
               </div>
             </li>
@@ -58,7 +58,7 @@
           </ul>
         </div>
         <div class="comment-form">
-          <h2>Leave a comment</h2>
+          <h2>Оставить комментарий</h2>
           <form method="POST">
             {% csrf_token %}
             {{comment_form}}
