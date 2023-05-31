@@ -2,8 +2,6 @@ from django.contrib import admin
 from .models import Chef, About
 from django.utils.html import format_html
 
-# Register your models here.
-
 
 class ChefAdmin(admin.ModelAdmin):
     def thumbnail(self, object):

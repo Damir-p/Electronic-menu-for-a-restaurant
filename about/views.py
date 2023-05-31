@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from .models import Chef, About
 
-# Create your views here.
-
 
 def about(request):
     abouts = About.objects.all()

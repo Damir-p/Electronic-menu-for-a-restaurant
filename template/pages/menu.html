@@ -1,0 +1,73 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock title %}
+<p></p>
+{% block content %} {% load humanize %} {% load static %}
+<!-- Page Header Start -->
+<div class="page-header mb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Меню</h2>
+      </div>
+      <div class="col-12">
+        <a href="{% url 'home' %}">Домой</a>
+        <a href="{% url 'menu_list' %}">Меню</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Menu Start -->
+<div class="menu">
+  <div class="container">
+    <div class="menu-tab">
+      <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="pill" href="#Burger"
+            >Бургеры</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#Pizza">Пицца</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#Beverages">Напитки</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#Snacks">Закуски</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#Pasta">Макаронные изделия</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#Fries">Фри</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        {% for menu in menus %}
+        <div id="{{menu.category.name}}" class="container tab-pane active">
+          <div class="row">
+            <div class="col-lg-7 col-md-12">
+              <div class="menu-item">
+                <div class="menu-img">
+                  <img src="{{menu.image.url}}" alt="Image" />
+                </div>
+                <div class="menu-text">
+                  <h3>
+                    <span>{{menu.name}}</span> <strong>${{menu.price}}</strong>
+                  </h3>
+                  <p class="text-left">{{menu.description}}</p>
+                  <br />
+                  <p>{{menu.preparation_time}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Menu End -->
+{% endblock %}

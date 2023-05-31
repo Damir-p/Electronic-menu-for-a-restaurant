@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from .models import Menu
+from .models import Menu, Booking
 from .forms import BookingForm
+
+# Create your views here.
+
 
 def menu_list(request):
     menus = Menu.objects.all()

@@ -33,8 +33,6 @@ class MenuAdmin(admin.ModelAdmin):
     search_fields = ('name', 'category')
 
 
-
-
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'email',
                     'date', 'time', 'no_of_persons')

@@ -1,0 +1,65 @@
+<!-- Footer Start -->
+{% include 'includes/messages.html' %}
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="footer-contact">
+              <h2>Наш адресс</h2>
+              <p>
+                <i class="fa fa-map-marker-alt"></i>Бишкек 
+              </p>
+              <p><i class="fa fa-phone-alt"></i>+996 559 981 498</p>
+              <p><i class="fa fa-envelope"></i>it-academy</p>
+              <div class="footer-social">
+                <a href="https://www.twitter.com"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="https://www.facebook.com"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="https://www.youtube.com"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+                <a href="https://www.instagram.com"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="https://www.linkedin.com"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="footer-newsletter">
+          <h2>Новостная рассылка</h2>
+          <p>Информационный бюллетень подпишитесь на нашу рассылку</p>
+          <div class="form">
+            <form action="{% url 'newsletter' %}" method="post">
+              {% csrf_token %}
+              <input
+                class="form-control"
+                type="email"
+                name="email"
+                placeholder="Email goes here........"
+                required=""
+              />
+              <input class="btn custom-btn" type="submit" value="Subscribe" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <div class="container">
+      <p>© {% now 'Y' %} Наш Ресторан</p>
+      <p>Разработано <a href="https://it-academy.kg/"></a></p>
+    </div>
+  </div>
+</div>
+<!-- Footer End -->

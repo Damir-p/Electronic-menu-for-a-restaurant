@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import datetime
 
+# Create your models here.
+
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
@@ -19,7 +21,7 @@ class Category(models.Model):
 class Menu(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    description = models.TextField(1)
+    description = models.TextField(max_length=500)
     image = models.ImageField(upload_to='media/meals/%y/%m/%d/', blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     preparation_time = models.CharField(max_length=10)

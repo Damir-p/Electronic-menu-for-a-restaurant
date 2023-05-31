@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock title %}
+<p></p>
+{% block content %} {% load humanize %} {% load static %}
+<!-- Page Header Start -->
+<div class="page-header mb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Забронировать столик</h2>
+      </div>
+      <div class="col-12">
+        <a href="{% url 'home' %}">Домой</a>
+        <a href="">UsЗабронировать</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Booking Start -->
+<div class="booking">
+  {% url 'booking' %}
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="booking-content">
+          <div class="section-header">
+            <p>Забронировать столик</p>
+            <h2>Забронируйте столик для частных ужинов и счастливых часов</h2>
+          </div>
+          <div class="about-text">
+            <p>
+              Добро пожаловать на страницу бронирования Наш Ресторан, где мы предлагаем лучшее
+              меню. Пожалуйста, бронируйте места. Ваше здоровье!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="booking-form">
+          <form action="{% url 'booking' %}" method="POST">
+            {% csrf_token %} {{booking_form.as_p}}
+            <div>
+              <button class="btn custom-btn" type="submit">Забронируйте сейчас</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Booking End -->
+{% endblock %}
