@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Корзина</h2>
+      </div>
+      <div class="col-12">
+        <a href="{% url 'home' %}">Домой</a>
+        <a href="{% url 'signup' %}">Корзина</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% extends 'base.html' %}
+
+{% block title %}Корзина{% endblock title %}
+
+
+  <!-- Cart Items Start -->
+  <div class="cart-items">
+    <div class="container">
+      {% if cart_items %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Название</th>
+              <th scope="col">Цена</th>
+              <th scope="col">Количество</th>
+              <th scope="col">Сумма</th>
+              <th scope="col">Действие</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart_items %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.product.price }} сом</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.subtotal }} сом</td>
+                <td>
+                  <form action="{% url 'remove_from_cart' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="text-right"><strong>Общая сумма:</strong></td>
+              <td colspan="2">{{ cart_total }} сом</td>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="text-center">
+          <a href="{% url 'checkout' %}" class="btn btn-primary">Оформить заказ</a>
+        </div>
+      {% else %}
+        <p>Корзина пуста</p>
+      {% endif %}
+    </div>
+  </div>
+  <!-- Cart Items End -->
+{% endblock %}

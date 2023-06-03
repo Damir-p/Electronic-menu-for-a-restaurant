@@ -1,6 +1,6 @@
 from pathlib import Path, os
 from django.contrib.messages import constants as messages
-
+import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,16 +28,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'rest_framework',
-    'ckeditor',
-
-    'menu',
-    # 'cart',
-    # 'orders',
-    'blog',
-    'contact',
-    'about',
-    'meals',
+    
+    'apps.menu',
+    'apps.blog',
+    'apps.contact',
+    # 'apps.orders',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +52,7 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, "template"],
+        'DIRS': [BASE_DIR, "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,6 +81,16 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'db',
+#         'PORT': '5432',
+#     },
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -118,6 +124,7 @@ USE_TZ = True
 
 
 
+
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'main/static'), ]
@@ -125,16 +132,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'main/static'), ]
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
-    50: 'critical',
-}
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'damir.ptn@gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'damir.ptn@gmail.com'
-EMAIL_HOST_PASSWORD = 'password'
-EMAIL_USE_TLS = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+APPEND_SLASH = False
+
+
+# AUTH_USER_MODEL = 'users.User'

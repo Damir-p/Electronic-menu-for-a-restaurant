@@ -18,12 +18,23 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path
+
+from django.urls import path
+from users.views import Signup, Login, logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('meals.urls')),
-    path('menu/', include('menu.urls')),
-    path('blog/', include('blog.urls')),
-    path('about/', include('about.urls')),
-    path('contact/', include('contact.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', include('apps.menu.urls')),
+    path('blog/', include('apps.blog.urls')),
+    path('contact/', include('apps.contact.urls')),
+
+    path('signup/', Signup.as_view(), name='signup'),
+    path('login/', Login.as_view(), name='login'),
+    path('logout/', logout, name='logout'),
+
+    # path('cart/', include('cart.urls')),
+
+
+ ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -1,0 +1,116 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock title %}
+<p></p>
+{% block content %} {% load humanize %} {% load static %}
+<!-- Page Header Start -->
+<div class="page-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Контакты</h2>
+      </div>
+      <div class="col-12">
+        <a href="{% url 'home' %}">Домой</a>
+        <a href="{% url 'contact' %}">Контакты</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="contact">
+  <div class="container">
+    <div class="section-header text-center">
+      <p>Связаться с нами</p>
+      <h2>
+        Контакт для любого запроса</h2>
+    </div>
+    <div class="row align-items-center contact-information">
+      <div class="col-md-6 col-lg-3">
+        <div class="contact-info">
+          <div class="contact-icon">
+            <i class="fa fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-text">
+            <h3>адресс</h3>
+            <p> 115/1 ул. Ибраимова, Бишкек</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="contact-info">
+          <div class="contact-icon">
+            <i class="fa fa-phone-alt"></i>
+          </div>
+          <div class="contact-text">
+            <h3>Позвоните нам</h3>
+            <p>+996 559 981 498</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="contact-info">
+          <div class="contact-icon">
+            <i class="fa fa-envelope"></i>
+          </div>
+          <div class="contact-text">
+            <h3>Наше Email</h3>
+            <p>damir.ptn@gmail.com</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="contact-info">
+          <div class="contact-icon">
+            <i class="fa fa-share"></i>
+          </div>
+          <div class="contact-text">
+            <h3>Подписывайтесь на нас</h3>
+            <div class="contact-social">
+              <a href="https://www.twitter.com"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="https://www.facebook.com"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.linkedin.com"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row contact-form">
+      <div class="col-md-6">
+        <iframe
+          src="{% static 'https://www.google.com' %}"
+          frameborder="0"
+          style="border: 0"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0"
+        ></iframe>
+      </div>
+      <div class="col-md-6">
+        <div id="success"></div>
+        <form method="POST" action="">
+          {% csrf_token %} {{form.as_p}}
+          <div>
+            <button class="btn custom-btn" type="submit" id="sendMessageButton">
+              Отправить сообщение
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contact End -->
+{% endblock %}

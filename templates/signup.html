@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Регистрация</h2>
+      </div>
+      <div class="col-12">
+        <a href="{% url 'home' %}">Домой</a>
+        <a href="{% url 'signup' %}">Регистрация</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="p-3 m-3">
+    <div class="col-lg-5 rounded mx-auto border pt-4">
+      <div class="text-center col">
+        <img src="https://th.bing.com/th/id/Rd51d7c0fde6d96a31538a86cbd57f3c0?rik=%2fTJxRkU2V371QQ&riu=http%3a%2f%2ftechnologyend.com%2fwp-content%2fuploads%2f2015%2f11%2fwhy-shop-online.jpg&ehk=v1KiYT0i5U1ABCRueDSdLqnazh2BdlVD89Z4qXE0Kgs%3d&risl=&pid=ImgRaw" alt="" class="" style="height: 150px;">
+        <hr>
+      </div>
+      <h3 class="alert alert-success rounded-pill" style="text-align:center">Создать профиль</h3>
+      <form action="/signup/" method="POST">
+        {% csrf_token %}
+
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+        {% endif %}
+
+        <!-- First name -->
+        <div class="form-group">
+          <label for="firstname">Имя</label>
+          <input type="text" name="firstname" id="firstname" value="{{ values.first_name }}" class="form-control form-control-sm" placeholder="">
+        </div>
+
+        <!-- Last name -->
+        <div class="form-group">
+          <label for="lastname">Фамилия</label>
+          <input type="text" name="lastname" id="lastname" value="{{ values.last_name }}" class="form-control form-control-sm">
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+          <label for="phone">Телефон</label>
+          <input type="text" name="phone" id="phone" class="form-control form-control-sm" value="{{ values.phone }}" placeholder="+996 555 55 55 55">
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Эл.почта</label>
+          <input required type="email" name="email" id="email" value="{{ values.email }}" class="form-control form-control-sm" placeholder="abc@gmail.com">
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">Пароль</label>
+          <input type="password" name="password" id="password" class="form-control form-control-sm">
+        </div>
+
+        <!-- Checkme button -->
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label d-grid gap-2" for="exampleCheck1">Проверить</label>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-sm btn-success col-lg-12">Создать профиль</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
