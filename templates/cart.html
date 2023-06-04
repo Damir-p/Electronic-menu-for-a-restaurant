@@ -9,9 +9,33 @@
       </div>
       <div class="col-12">
         <a href="{% url 'home' %}">Домой</a>
-        <a href="{% url 'contact' %}">Корзина</a>
+        <a href="{% url 'cart' %}">Корзина</a>
       </div>
     </div>
   </div>
 </div>
+<h2>Корзина</h2>
+
+{% for item in cart_items %}
+    <div>
+        <h4>{{ item.product.name }}</h4>
+        <p>Количество: {{ item.quantity }}</p>
+        <p>Цена: {{ item.total_price }}</p>
+    </div>
+    <hr>
+{% endfor %}
+
+<a href="{% url 'checkout' %}">Оформить заказ</a>
+
+{% load custom_filters %}
+
+{% for item in cart_items %}
+    <div>
+        <h4>{{ item.product.name }}</h4>
+        <p>Количество: {{ item.quantity }}</p>
+        <p>Цена: {{ item.product.price|multiply:item.quantity }}</p>
+    </div>
+    <hr>
+{% endfor %}
+
 {% endblock %}

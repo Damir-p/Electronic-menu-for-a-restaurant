@@ -27,14 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     
     'apps.menu',
     'apps.blog',
     'apps.contact',
     'apps.users',
-    'orders',
-    'cart',
+    'apps.orders',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +52,9 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, "templates", '/path/to/ckeditor/templates/'],
+        'DIRS': [
+            BASE_DIR, "templates"
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

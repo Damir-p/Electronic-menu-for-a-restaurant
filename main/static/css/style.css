@@ -866,6 +866,11 @@ a:focus {
 /*******************************/
 /*********** Menu CSS **********/
 /*******************************/
+.quantity-input {
+    display: flex;
+    align-items: center
+}  
+
 .menu {
     position: relative;
     padding: 45px 0 15px 0;

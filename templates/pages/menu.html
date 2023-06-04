@@ -15,6 +15,7 @@
           {% for category in categories %}
             <a href="{% url 'menu_list' %}?category={{ category.id }}">{{ category.name }}</a>
           {% endfor %}
+          <a href="{% url 'cart' %}">Корзина</a>  <!-- Добавленная кнопка "Корзина" -->
         </div>
       </div>
     </div>
@@ -49,6 +50,11 @@
                       <p class="text-left">{{ menu_item.description }}</p>
                       <br />
                       <p>{{ menu_item.preparation_time }}</p>
+                      <form action="{% url 'add_to_cart' %}" method="post">  <!-- Добавленная форма для добавления в корзину -->
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ menu_item.id }}">
+                        <button type="submit" style='margin: 10px; width: 120px; height: auto;'>В корзину</button>
+                      </form>
                     </div>
                   </div>
                 </div>

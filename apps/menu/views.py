@@ -6,11 +6,16 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
 
+from apps.menu.models import Category, Menu
 
 class MenuListView(View):
     def get(self, request):
         categories = Category.objects.all()
         selected_category_id = request.GET.get('category')
+
+        cart = request.session.get('cart', {})
+        total_items = sum(cart.values())
+
         if selected_category_id:
             menu_items = Menu.objects.filter(category_id=selected_category_id)
         else:
@@ -20,6 +25,8 @@ class MenuListView(View):
             'categories': categories,
             'menu_items': menu_items,
             'selected_category_id': selected_category_id,
+            'cart': cart,
+            'total_items': total_items,
         }
         return render(request, 'pages/menu.html', context)
 
