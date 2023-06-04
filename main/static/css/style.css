@@ -104,7 +104,7 @@ a:focus {
     position: fixed;
     top: 0;
     width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+    box-shadow: 0 2px 5px rgba(52, 85, 100, 0.3);
 }
 
 .navbar .navbar-brand {

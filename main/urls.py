@@ -19,9 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
+from apps.users.views import SingUpUser, SingInUser, logoutUser
 
-from django.urls import path
-from users.views import Signup, Login, logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,12 +28,8 @@ urlpatterns = [
     path('blog/', include('apps.blog.urls')),
     path('contact/', include('apps.contact.urls')),
 
-    path('signup/', Signup.as_view(), name='signup'),
-    path('login/', Login.as_view(), name='login'),
-    path('logout/', logout, name='logout'),
-
-    # path('cart/', include('cart.urls')),
-
+    path('signup/', SingUpUser, name='signup'),
+    path('login/', SingInUser, name='login'),
+    path('logout/', logoutUser, name='logout'),
 
  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
