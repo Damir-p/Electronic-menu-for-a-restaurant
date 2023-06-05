@@ -1,12 +1,13 @@
-from apps.menu.forms import BookingForm
 from django.views import View
 from django.shortcuts import render, redirect
-from apps.menu.models import Feature, Testimonial, Newsletter, Category, Menu
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
 
+from apps.menu.models import Feature, Testimonial, Newsletter, Category, Menu
 from apps.menu.models import Category, Menu
+from apps.menu.forms import BookingForm
+
 
 class MenuListView(View):
     def get(self, request):

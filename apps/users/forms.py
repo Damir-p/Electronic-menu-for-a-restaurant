@@ -1,5 +1,7 @@
-from django.forms import ModelForm, TextInput, EmailInput, PasswordInput
 from django.contrib.auth.models import User
+
+from django.forms import ModelForm, TextInput, EmailInput, PasswordInput
+
 
 class UserForm(ModelForm):
     class Meta:

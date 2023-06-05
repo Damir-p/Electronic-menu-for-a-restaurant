@@ -18,21 +18,24 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from apps.users.views import SingUpUser, SingInUser, logoutUser
+
+from apps.users.views import SignUpUserView, SignInUserView, LogoutUserView
 from apps.orders.views import AddToCartView, CartView, CheckoutView
 
 
 urlpatterns = [
-    path('add-to-cart/', AddToCartView.as_view(), name='add_to_cart'),
-    path('cart/', CartView.as_view(), name='cart'),
-    path('checkout/', CheckoutView.as_view(), name='checkout'),
     path('admin/', admin.site.urls),
     path('', include('apps.menu.urls')),
     path('blog/', include('apps.blog.urls')),
     path('contact/', include('apps.contact.urls')),
-    path('signup/', SingUpUser, name='signup'),
-    path('login/', SingInUser, name='login'),
-    path('logout/', logoutUser, name='logout'),
+    
+    path('signup/', SignUpUserView.as_view(), name='signup'),
+    path('login/', SignInUserView.as_view(), name='login'),
+    path('logout/', LogoutUserView.as_view(), name='logout'),
     path('cart/', include('apps.orders.urls')),
+
+    path('add-to-cart/', AddToCartView.as_view(), name='add_to_cart'),
+    path('cart/', CartView.as_view(), name='cart'),
+    path('checkout/', CheckoutView.as_view(), name='checkout'),
 
  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

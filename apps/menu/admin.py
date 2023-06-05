@@ -1,7 +1,7 @@
 from django.contrib import admin
-from apps.menu.models import Category, Menu, Booking, Testimonial, Feature, Newsletter
 from django.utils.html import format_html
 
+from apps.menu.models import Category, Menu, Booking, Testimonial, Feature, Newsletter
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -37,8 +37,6 @@ class BookingAdmin(admin.ModelAdmin):
                     'date', 'time', 'no_of_persons')
     list_display_links = ('name', 'email')
     search_fields = ('name', 'email')
-
-
 
 
 class TestimonialAdmin(admin.ModelAdmin):

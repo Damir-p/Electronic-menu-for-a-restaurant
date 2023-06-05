@@ -1,8 +1,8 @@
-from django.test import TestCase
 from django.test import TestCase, Client
 from django.urls import reverse
-from .models import Menu, Booking
-from .forms import BookingForm
+
+from apps.blog.models import Booking
+from apps.blog.forms import BookingForm
 
 
 class MenuListViewTest(TestCase):
@@ -31,9 +31,9 @@ class BookingViewTest(TestCase):
 
     def test_booking_view_post_valid_form(self):
         form_data = {
-            'name': 'John Doe',
-            'email': 'johndoe@example.com',
-            'mobile': '1234567890',
+            'name': 'damir',
+            'email': 'damir@gmail.com',
+            'mobile': '+996 555 555 555',
             'date': '2022-01-01',
             'time': '12:00',
             'no_of_persons': 4,

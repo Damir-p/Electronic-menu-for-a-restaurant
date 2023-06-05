@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
+
 from apps.menu.models import Booking
 from apps.menu.forms import BookingForm
 

@@ -4,14 +4,12 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='media/categories/%y/%m/%d/', blank=True)
-    # slug = models.CharField(max_length=100, db_index=True, unique=True, verbose_name='Ссылка')
 
     @staticmethod
     def get_all_categories():
         return Category.objects.all()
 
     class Meta:
-        # ordering = ('name',)
         verbose_name = 'category'
         verbose_name_plural = 'categories'
 
@@ -57,7 +55,6 @@ class Menu(models.Model):
         return self.name
 
  
-
 class Booking(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -69,9 +66,6 @@ class Booking(models.Model):
     def __str__(self):
         return self.name
     
-
-# Create your models here.
-
 
 class Feature(models.Model):
     name = models.CharField(max_length=50)
@@ -88,6 +82,7 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Newsletter(models.Model):
     email = models.EmailField(max_length=254)

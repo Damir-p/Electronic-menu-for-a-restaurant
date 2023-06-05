@@ -1,11 +1,11 @@
+from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
-from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
-from apps.contact.forms import ContactForm
-from main import settings
+from django.conf import settings
 
+from apps.contact.forms import ContactForm
 
 
 class ContactView(View):

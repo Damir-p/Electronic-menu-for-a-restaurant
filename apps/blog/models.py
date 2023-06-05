@@ -1,9 +1,10 @@
 from django.db import models
-from apps.menu.models import Category
 from ckeditor.fields import RichTextField
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.urls import reverse
+
+from apps.menu.models import Category
 
 
 class Post(models.Model):

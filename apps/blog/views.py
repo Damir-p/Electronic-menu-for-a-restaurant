@@ -1,10 +1,9 @@
 from django.shortcuts import redirect
-from apps.blog.models import Post, Comment, Chef, About
 from apps.blog.forms import CommentForm
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, TemplateView
 
-# Create your views here.
+from django.views.generic import ListView, DetailView, TemplateView
+from apps.blog.models import Post, Comment, Chef, About
 
 
 class PostsView(ListView):
@@ -44,9 +43,6 @@ class PostDetailView(DetailView):
             return redirect(reverse('post_detail', kwargs={'pk': self.object.pk}))
 
         return self.render_to_response(self.get_context_data(comment_form=comment_form))
-
-
-
 
 
 class AboutView(TemplateView):

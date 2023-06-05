@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.views import View
-from apps.orders.models import Order, CartItem
-from apps.menu.models import Menu
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
+
+from apps.menu.models import Menu
+from apps.orders.models import Order, CartItem
 
 
 class AddToCartView(View):
@@ -26,7 +27,7 @@ class AddToCartView(View):
 
 @method_decorator(login_required, name='dispatch')
 class CartView(TemplateView):
-    template_name = 'pages/cart.html'
+    template_name = 'cart.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
