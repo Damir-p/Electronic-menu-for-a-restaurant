@@ -54,21 +54,21 @@ class CheckoutView(View):
         return redirect('order_confirmation')
 
 
-class OrderConfirmationView(View):
-    def get(self, request):
-        order = Order.objects.latest('created_at')
+# class OrderConfirmationView(View):
+#     def get(self, request):
+#         order = Order.objects.latest('created_at')
         
-        context = {
-            'order': order,
-        }
-        return render(request, 'order.html', context)
+#         context = {
+#             'order': order,
+#         }
+#         return render(request, 'order.html', context)
 
 
-class OrderView(View):
-    def get(self, request):
-        customer = request.session.get('customer')
-        orders = Order.objects.filter(user=request.user)
-        return render(request, 'orders.html', {'orders': orders})
+# class OrderView(View):
+#     def get(self, request):
+#         customer = request.session.get('customer')
+#         orders = Order.objects.filter(user=request.user)
+#         return render(request, 'orders.html', {'orders': orders})
 
 
 
