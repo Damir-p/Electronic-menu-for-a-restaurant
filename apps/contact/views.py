@@ -22,7 +22,6 @@ class ContactView(View):
                 recipient_list = [settings.EMAIL_HOST_USER]
                 send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
-                # Сохранение данных в модели Contact
                 contact = Contact(name=name, email=email, subject=subject, message=message)
                 contact.save()
 
@@ -30,7 +29,7 @@ class ContactView(View):
                 return redirect('contact')
 
             except BadHeaderError:
-                return HttpResponse('Плохой ответ')
+                return HttpResponse('Не отправлено')
 
     def get(self, request):
         form = ContactForm()

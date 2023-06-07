@@ -153,5 +153,4 @@ EMAIL_USE_TLS = True
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'path.to.EmailBackend',
 ]

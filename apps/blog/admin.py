@@ -18,9 +18,6 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('title', 'writer', 'body')
 
 
-
-
-
 class ChefAdmin(admin.ModelAdmin):
     def thumbnail(self, object):
         return format_html('<img src="{}" width="40" style="border-radius: 50px;" />'.format(object.image.url))

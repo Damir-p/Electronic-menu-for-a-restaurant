@@ -61,7 +61,7 @@ class Booking(models.Model):
     mobile = models.CharField(max_length=14)
     date = models.DateField()
     time = models.TimeField()
-    no_of_persons = models.IntegerField()
+    no_of_persons = models.IntegerField(default=1)
     
     def __str__(self):
         return self.name

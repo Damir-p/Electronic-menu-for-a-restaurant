@@ -44,7 +44,7 @@ class CheckoutView(View):
         cart = request.session.get('cart', {})
         cart_items = CartItem.objects.filter(id__in=cart.keys())
         
-        order = Order.objects.create(user=request.user)  # Предполагается, что пользователь авторизован
+        order = Order.objects.create(user=request.user)
         
         for item in cart_items:
             quantity = cart[item.id]
@@ -53,23 +53,5 @@ class CheckoutView(View):
         del request.session['cart']
         
         return redirect('order_confirmation')
-
-
-# class OrderConfirmationView(View):
-#     def get(self, request):
-#         order = Order.objects.latest('created_at')
-        
-#         context = {
-#             'order': order,
-#         }
-#         return render(request, 'order.html', context)
-
-
-# class OrderView(View):
-#     def get(self, request):
-#         customer = request.session.get('customer')
-#         orders = Order.objects.filter(user=request.user)
-#         return render(request, 'orders.html', {'orders': orders})
-
 
 

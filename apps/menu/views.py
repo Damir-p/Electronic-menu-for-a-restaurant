@@ -3,10 +3,13 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from django.views.generic import TemplateView
 
 from apps.menu.models import Feature, Testimonial, Newsletter, Category, Menu
 from apps.menu.models import Category, Menu
 from apps.menu.forms import BookingForm
+from apps.menu.models import Testimonial
+
 
 
 class MenuListView(View):
@@ -73,7 +76,6 @@ class NewsletterView(View):
 
         newsletter = Newsletter(email=email)
 
-        # Email
         subject = 'Подписка на новости'
         message = 'Привет читатель! Благодарим вас за подписку на еженедельную рассылку новостей Наш Ресторан.'
         from_email = settings.EMAIL_HOST_USER
@@ -81,8 +83,18 @@ class NewsletterView(View):
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
         newsletter.save()
-        messages.success(request, 'Благодарим вас за подписку на еженедельный информационный бюллетень Наш Ресторан. Проверьте свой почтовый ящик для получения дополнительной информации')
+        messages.success(request, 'Благодарим вас за подписку на еженедельный информационный сайт наш Ресторан. Проверьте свой почтовый ящик для получения дополнительной информации')
         return redirect('home')
 
     def get(self, request):
         return render(request, 'pages/home.html')
+    
+
+class AboutView(TemplateView):
+    template_name = 'about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        testimonials = Testimonial.objects.all()
+        context['testimonials'] = testimonials
+        return context
