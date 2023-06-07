@@ -34,9 +34,25 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div class="footer-newsletter">
-         
+        <div class="col-lg-5">
+          <div class="footer-newsletter">
+            <h2>Подписатся</h2>
+            <p>Пожалуйста, подпишитесь на нашу рассылку</p>
+            <div class="form">
+              <form action="{% url 'newsletter' %}" method="post">
+                {% csrf_token %}
+                <input
+                  class="form-control"
+                  type="email"
+                  name="email"
+                  placeholder="Email goes here........"
+                  required=""
+                />
+                <input class="btn custom-btn" type="submit" value="Подписатся" />
+              </form>
+            </div>
+          </div>
+        </div>
             </form>
           </div>
         </div>

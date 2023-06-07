@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.conf import settings
 
 from apps.contact.forms import ContactForm
-
+from apps.contact.models import Contact
 
 class ContactView(View):
     def post(self, request):
@@ -18,19 +18,19 @@ class ContactView(View):
             message = form.cleaned_data['message']
 
             try:
-                subject = [subject]
-                message = [message]
                 from_email = email
                 recipient_list = [settings.EMAIL_HOST_USER]
                 send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
-                form.save()
+                # Сохранение данных в модели Contact
+                contact = Contact(name=name, email=email, subject=subject, message=message)
+                contact.save()
 
-                messages.success(request, 'Your inquiry has been submitted. We will get back to you shortly')
+                messages.success(request, 'Ваш запрос отправлен. Мы скоро к тебе вернемся')
                 return redirect('contact')
 
             except BadHeaderError:
-                return HttpResponse('Bad Response')
+                return HttpResponse('Плохой ответ')
 
     def get(self, request):
         form = ContactForm()

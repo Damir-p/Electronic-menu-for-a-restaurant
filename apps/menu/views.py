@@ -45,6 +45,8 @@ class BookingView(View):
 
         if booking_form.is_valid():
             booking_form.save()
+            messages.success(request, 'Столик забронирован!')
+            return redirect("menu_list")
 
         context = {
             'booking_form': booking_form,
