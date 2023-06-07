@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    
+    'ckeditor',
+
     'apps.menu',
     'apps.blog',
     'apps.contact',
