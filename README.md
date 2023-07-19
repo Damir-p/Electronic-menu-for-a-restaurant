@@ -1,20 +1,21 @@
 
+
 Электронное меню ресторана
 
-<!-- COPY: -->
+COPY:
 git clone https://github.com/Damir-p/Electronic-menu-for-a-restaurant.git
 
-<!-- VIRTUALENV -->
+VIRTUALENV
 python3 -m venv venv
 
-<!-- ACTIVATE VENV -->
+ACTIVATE VENV
 source venv/bin/activate
 
-<!-- MIGRATIONS -->
+MIGRATIONS
 python manage.py migrate
 
-<!-- RUN -->
+RUN
 python manage.py runserver 127.0.0.1:8000
 
-<!-- DOCKER RUN  -->
+DOCKER RUN
 docker-compose up
